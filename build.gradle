@@ -63,6 +63,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-crypto'
 
+	// Chat
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation ('org.springframework.boot:spring-boot-starter-data-mongodb')
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'io.netty:netty-resolver-dns-native-macos:4.1.95.Final:osx-aarch_64'
@@ -74,14 +78,37 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.security:spring-security-crypto'
+
 	//dotenv
 	implementation 'io.github.cdimascio:java-dotenv:5.2.2'
 
-
+	//redis
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+	//
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	//hibernate
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.hibernate.common:hibernate-commons-annotations:6.0.6.Final'
 }
 
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+def querydslDir = "src/main/generated"
+
+sourceSets {
+	main.java.srcDirs += [ querydslDir ]
+}
+
+tasks.withType(JavaCompile) {
+	options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
+}
+
+clean.doLast {
+	file(querydslDir).deleteDir()
 }

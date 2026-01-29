@@ -1,4 +1,99 @@
-# STACKPOT-BE
+
+
+# STACKPOT
+
+> **"팀 빌딩부터 프로젝트 운영까지, 개발 프로젝트의 전 과정을 관리하는 플랫폼"**
+
+**🔗 Links**
+- **서비스**: https://www.stackpot.co.kr
+- **랜딩 페이지**: https://stackpot.qshop.ai/
+- **GitHub**: https://github.com/STACKPOT/STACKPOT-BE
+
+![image](https://github.com/user-attachments/assets/87d0dbcb-4a24-4877-8edb-dabe1050182f)
+
+![image](https://github.com/user-attachments/assets/83374ba0-81b0-4ec5-9a9c-9c70f40240f4)
+
+![image](https://github.com/user-attachments/assets/9e35b8fb-d198-41bf-b107-d8811aead7e0)
+
+![image](https://github.com/user-attachments/assets/b0dae67e-d47c-4fab-a75b-a78b378d761c)
+
+![image](https://github.com/user-attachments/assets/c149108e-2ccb-4957-ad64-7c75beba5ec6)
+
+## 📋 프로젝트 소개
+
+개발자 중심의 프로젝트 매칭 환경에서는 참여자의 기여도와 신뢰도를 객관적으로 판단할 수 있는 정보가 부족해 팀 빌딩이 주관적인 인상에 의존하는 문제가 있었습니다. 
+
+Stackpot은 이를 해결하기 위해 **프로젝트 생성부터 종료까지의 전 과정을 하나의 흐름으로 기록·관리**하고, 역할별 캐릭터와 활동 기반 지표를 통해 진입 장벽을 낮추며 프로젝트 이력을 피드 형태로 축적해 **데이터 기반의 신뢰 판단이 가능한 매칭 환경**을 제공하는 플랫폼입니다.
+
+## ✨ 주요 기능
+
+| 기능 | 설명 |
+|------|------|
+| 📝 **AI 콘텐츠 요약** | OpenAI 기반 프로젝트 설명 및 진행 상황 자동 요약 |
+| 🤖 **AI 닉네임 생성** | 창의적이고 일관된 톤의 닉네임 자동 생성 |
+| 🌡️ **사용자 온도** | 신뢰도 기반 사용자 평가 시스템 |
+| 📊 **마이페이지** | 참여 프로젝트 · 피드 · 배지 통합 관리 |
+| 📱 **피드 시스템** | 시리즈 단위 개발 경험 공유 플랫폼 |
+| 🔐 **소셜 로그인** | 카카오 · 구글 · 네이버 OAuth2 인증 |
+| 👥 **프로젝트 매칭** | 개발자들의 팟(프로젝트) 생성 및 참여 |
+| 🥕 **역할별 캐릭터** | BACKEND(브로콜리), FRONTEND(당근) 등 역할 기반 캐릭터 |
+| 💬 **실시간 채팅** | WebSocket 기반 팟 내부 실시간 채팅 |
+| 📋 **태스크 관리** | 프로젝트별 할 일 관리 및 진행률 추적 |
+| 🏆 **배지 시스템** | 프로젝트 완료 및 성취에 따른 배지 획득 |
+| 🔔 **알림 시스템** | 실시간 알림 + 이메일 알림 |
+
+## 🛠 기술 스택
+
+### Backend
+- **Framework**: Spring Boot 3.3.6
+- **Language**: Java 17
+- **Database**: MySQL (AWS RDS), MongoDB, Redis
+- **ORM**: Spring Data JPA (Hibernate)
+- **Security**: Spring Security + JWT + OAuth2
+- **API Documentation**: SpringDoc OpenAPI (Swagger)
+- **Build Tool**: Gradle
+
+### AI & External Services
+- **AI**: OpenAI GPT-4 Turbo
+- **File Storage**: AWS S3
+- **Email**: Gmail SMTP
+
+### Infrastructure & DevOps
+- **Deployment**: Docker + AWS EC2 + Nginx
+- **CI/CD**: GitHub Actions
+- **Monitoring**: Spring Boot Actuator
+
+### Additional Libraries
+- **Real-time Communication**: WebSocket
+- **Utilities**: Lombok, RestTemplate, WebFlux
+
+## 🏗 아키텍처
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Frontend      │    │   Load Balancer │    │   Backend       │
+│   (React)       │◄──►│   (Nginx)       │◄──►│   (Spring Boot) │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                                        │
+                       ┌─────────────────┐             │
+                       │   File Storage  │◄────────────┤
+                       │   (AWS S3)      │             │
+                       └─────────────────┘             │
+                                                        │
+┌─────────────────┐    ┌─────────────────┐             │
+│   Cache         │◄───│   Database      │◄────────────┘
+│   (Redis)       │    │   (MySQL/RDS)   │
+└─────────────────┘    └─────────────────┘
+                                │
+                       ┌─────────────────┐
+                       │   NoSQL         │
+                       │   (MongoDB)     │
+                       └─────────────────┘
+```
+
+---
+
+# 개발 가이드
 
 ## Commit Convention
 - **[FEAT]** : 새로운 기능 구현
